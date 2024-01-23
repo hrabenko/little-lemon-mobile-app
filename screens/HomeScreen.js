@@ -1,9 +1,16 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
-export default function HomeScreen() {
+import {View, Text, StyleSheet} from 'react-native';
+import Header from '../components/Header'
+export default function HomeScreen({navigation}) {
     return (
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Text>Home Screen</Text>
+        <View style={styles.container}>
+            <Header navigation={navigation} />
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff'
+    },
+})

@@ -4,6 +4,8 @@ import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {checkFirstName, checkEmail, checkPhoneNumber} from '../validation';
 import * as ImagePicker from 'expo-image-picker';
+import DefaultAvatar from "../components/DefaultAvatar";
+import Header from '../components/Header'
 
 export default function ProfileScreen({setIsLogged, navigation}) {
     const [avatar, setAvatar] = useState(null);
@@ -36,15 +38,6 @@ export default function ProfileScreen({setIsLogged, navigation}) {
         setAvatar(null);
     }
 
-    const DefaultAvatar = ({size, fontSize}) => {
-        const letters = (personalInfo.firstName[0] + (personalInfo.lastName[0] ? personalInfo.lastName[0] : ""));
-        return <View style={{...styles.defaultAvatar, width: size, height: size}}>
-            <Text style={{...styles.defaultAvatarText, fontSize: fontSize}}>
-                {letters}
-            </Text>
-        </View>
-    }
-
     const updatePersonalInfo = (key, value) => {
         setPersonalInfo((prevState) => ({
             ...prevState, [key]: value
@@ -72,6 +65,7 @@ export default function ProfileScreen({setIsLogged, navigation}) {
         setNotifications({
             orderStatuses: true, passwordChanges: true, specialOffers: true, newsletter: true
         });
+        setAvatar(null);
         getPersonalData().then();
 
     }
@@ -119,6 +113,7 @@ export default function ProfileScreen({setIsLogged, navigation}) {
                     await AsyncStorage.multiSet([...personalInfoPairs, ...notificationsPairs, ["avatar", avatar]]);
                 } else {
                     await AsyncStorage.multiSet([...personalInfoPairs, ...notificationsPairs]);
+                    await AsyncStorage.removeItem("avatar");
                 }                Alert.alert(`Changes saved`);
             } catch (e) {
                 Alert.alert(`An error occurred: ${e.message}`);
@@ -130,15 +125,7 @@ export default function ProfileScreen({setIsLogged, navigation}) {
 
 
     return (<View style={styles.container}>
-        <View style={styles.headerContainer}>
-            <Pressable onPress={() => navigation.navigate('Home')}>
-                <Image style={styles.homeIcon} source={require('../assets/home-icon.png')} />
-            </Pressable>
-            <Image style={styles.image} source={require('../assets/little-lemon-logo.png')}/>
-            {avatar ?
-                <Image source={{uri: avatar}} style={{...styles.avatar, ...styles.avatarHeader}}/> :
-                <DefaultAvatar size={50} fontSize={20} />}
-        </View>
+        <Header avatar={avatar} personalInfo={personalInfo} navigation={navigation} />
         <ScrollView style={styles.scrollContainer}>
             <Text style={styles.headingText}>Personal information</Text>
             <View style={styles.inputContainer}>
@@ -146,7 +133,7 @@ export default function ProfileScreen({setIsLogged, navigation}) {
                 <View style={styles.avatarControl}>
                     {avatar ?
                         <Image source={{uri: avatar}} style={styles.avatar}/> :
-                        <DefaultAvatar size={100} fontSize={30} />}
+                        <DefaultAvatar personalInfo={personalInfo} size={100} fontSize={30} />}
                     <Pressable style={styles.greenButton} onPress={changeAvatar}>
                         <Text style={styles.greenButtonText}>Change</Text>
                     </Pressable>
@@ -250,12 +237,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row', gap: 30, alignItems: 'center'
     }, avatar: {
         width: 100, height: 100, resizeMode: 'cover', borderRadius: 50
-    }, defaultAvatar: {
-        borderRadius: 50, backgroundColor: '#93ACCA', justifyContent: 'center', alignItems: 'center',
     }, avatarHeader: {
         width: 50, height: 50
-    }, defaultAvatarText: {
-        color: '#ffffff',
     },
     textInput: {
         height: 50, padding: 10, fontSize: 16, borderWidth: 2, borderColor: '#dee3e9', borderRadius: 7
