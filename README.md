@@ -13,13 +13,18 @@ The Little Lemon React Native App is a mobile application developed using the Re
 - Profile Screen: Allows users to manage their personal information, customize their avatars, and configure email notification preferences. Users can also log out of their accounts.
 
 
-## Features
+## Screenshots
 
 *Onboarding Screen*
-![Onboarding Screen](/screenshots/OnboardingScreen.jpg)
+
+<img src="/screenshots/OnboardingScreen.jpg" alt="Onboarding Screen" width="250" height="auto">
+
 
 *Profile Screen*
-![Profile Screen](/screenshots/ProfileScreen.jpg)
+
+<img src="/screenshots/ProfileScreen.jpg" alt="Profile Screen" width="250" height="auto">
+
 
 *Home Screen*
-![Home Screen](/screenshots/HomeScreen.jpg)
+
+<img src="/screenshots/HomeScreen.jpg" alt="Home Screen" width="250" height="auto">
