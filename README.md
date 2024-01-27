@@ -6,7 +6,7 @@ The Little Lemon React Native App is a mobile application developed using the Re
 
 ## Features
 
-- Onboarding Screen: Welcomes new users and nd allows to log in to their profile.
+- Onboarding Screen: Welcomes new users and allows to log in to their profile.
 
 - Home Screen: Displays a menu of dishes categorized into starters, mains, desserts, and drinks. Users can search for specific items and apply filters based on their preferences.
 
