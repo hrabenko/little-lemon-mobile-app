@@ -1,9 +1,10 @@
 import {Image, Pressable, StyleSheet, Text, View} from "react-native";
 
 export default function DefaultAvatar ({size, fontSize, personalInfo}) {
-    const letters = personalInfo.firstName[0]
-        ? (personalInfo.firstName[0] + (personalInfo.lastName[0] ? personalInfo.lastName[0] : ""))
-        : "";
+    const firstName = personalInfo?.firstName || "";
+    const lastName = personalInfo?.lastName || "";
+    const letters = firstName[0] + (lastName[0] || "");
+
     return <View style={{...styles.defaultAvatar, width: size, height: size}}>
         <Text style={{...styles.defaultAvatarText, fontSize: fontSize}}>
             {letters}
