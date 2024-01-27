@@ -84,7 +84,7 @@ export default function ProfileScreen({setIsLogged, navigation}) {
                         ...prevState, [key]: JSON.parse(value),
                     }));
                 } else if (key === 'avatar') {
-                    setAvatar(value)
+                    setAvatar(value);
                 }
             }
         } catch (e) {
@@ -125,7 +125,7 @@ export default function ProfileScreen({setIsLogged, navigation}) {
 
 
     return (<View style={styles.container}>
-        <Header avatar={avatar} personalInfo={personalInfo} navigation={navigation} />
+        <Header navigation={navigation} />
         <ScrollView style={styles.scrollContainer}>
             <Text style={styles.headingText}>Personal information</Text>
             <View style={styles.inputContainer}>

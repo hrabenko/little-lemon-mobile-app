@@ -29,8 +29,8 @@ const RootNavigator = () => {
         <Stack.Navigator>
             {isLogged ? (
                 <>
-                    <Stack.Screen name="Profile" component={(props) => <ProfileScreen {...props} setIsLogged={setIsLogged} />} />
                     <Stack.Screen name={"Home"} component={(props) => <HomeScreen {...props}/>} />
+                    <Stack.Screen name="Profile" component={(props) => <ProfileScreen {...props} setIsLogged={setIsLogged} />} />
                 </>
             ) : (
                 <Stack.Screen name="Onboarding" component={() => <OnboardingScreen setIsLogged={setIsLogged} />} />
